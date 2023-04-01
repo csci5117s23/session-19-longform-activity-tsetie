@@ -1,0 +1,17 @@
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.flashCard{
+  height: 25em;
+  width: 50em;
+}
+
+.front{
+  background-color: rgba(100, 133, 131, 0.283);
+}
+
+.back{
+  background-color: rgba(100, 133, 131, 0.61);
+}

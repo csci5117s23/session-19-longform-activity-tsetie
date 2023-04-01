@@ -1,20 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import FlashCard from "./flashcard.js";
 
 function App() {
-  const QUESTIONS = [{front: "question1", back:"answer1"},
+  const QUESTIONS = [{front: "What color is Tseten's eyes?", back:"Black"},
                     {front: "question2", back:"answer2"},
                     {front: "question3", back:"answer3"},]
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-
-      YOUR CODE WILL GO HERE!
-
-
+      <FlashCard cardContent={QUESTIONS[0]}/>
     </div>
   );
 }
