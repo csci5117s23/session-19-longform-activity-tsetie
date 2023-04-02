@@ -1,15 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
-import FlashCard from "./flashcard.js";
+import {FlashCardList} from "./flashcard.js"
+import {FlashCardBuilder} from "./flashcard.js";
+import { useState } from 'react';
+import './flashcard.css';
 
 function App() {
   const QUESTIONS = [{front: "What color is Tseten's eyes?", back:"Black"},
-                    {front: "question2", back:"answer2"},
-                    {front: "question3", back:"answer3"},]
+                    {front: "What is Tseten's middle name?", back:"Dolma"},
+                    {front: "Does Tseten like apples or oranges more?", back:"Apples"},]
+
+  const [contentList, setContentList] = useState(QUESTIONS);
+
+  function onAdd(e){
+    e.preventDefault();
+    const newContent = {front: e.target.front.value, back: e.target.back.value};
+    const newContentList = contentList.concat(newContent);
+    setContentList(newContentList);
+
+  }
 
   return (
     <div className="App">
-      <FlashCard cardContent={QUESTIONS[0]}/>
+      <FlashCardBuilder onAdd={onAdd}/>
+      <FlashCardList cardContent={contentList}/>
     </div>
   );
 }

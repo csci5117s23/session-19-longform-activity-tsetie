@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import './flashcard.css';
 
-function FlashCard(props){
+function FlashCard(prop){
   const [front, setFront] = useState(true);
-  const content = props.cardContent;
-
+  // When user clicks the card this will make it flip 
   const flipCard = () => {
     if(front){
       setFront(false);
@@ -14,10 +13,10 @@ function FlashCard(props){
   }
 
   return (
-    <div className="container">
+    <div>
       <button onClick={flipCard} className={front ? "flashCard front" : "flashCard back"}>
         <div>
-          {front ? props.cardContent.front : props.cardContent.back}
+          {front ? prop.content.front : prop.content.back}
         </div>    
       </button>
 
@@ -25,4 +24,33 @@ function FlashCard(props){
   );
 }
 
-export default FlashCard;
+
+export function FlashCardList(props){
+  // Holds questions and answers (list of objects)
+  const contents = props.cardContent;
+  return (
+    <div>
+      {contents.map((c) => (
+        <FlashCard content={c}/>
+      ))}
+    </div>
+  );
+}
+
+
+export function FlashCardBuilder(props){
+
+  return (
+    <div>
+      <form method='post' onSubmit={props.onAdd} className="formContainer">
+        <label className='inputs'>
+          Enter the question: <input name="front" />
+        </label>
+        <label className='inputs'>
+          Enter the answer: <input name="back" />
+        </label>
+        <button type="submit" className='submitBtn'>Build new flashcard</button>
+      </form>
+    </div>
+  )
+}
